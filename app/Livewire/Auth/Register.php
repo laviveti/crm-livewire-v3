@@ -28,12 +28,13 @@ class Register extends Component
     public function submit(): void
     {
         $this->validate();
-        $manual = 1;
 
-        User::query()->create([
+        $user = User::create([
             'name' => $this->name,
             'email' => $this->email,
             'password' => $this->password,
         ]);
+
+        auth()->login($user);
     }
 }
