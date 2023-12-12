@@ -7,4 +7,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', Welcome::class);
 Route::get('/register', Register::class)->name('auth.register');
-Route::get('/logout', fn () => Auth::logout());
+Route::get('/logout', fn () => Auth::logout())->name('logout');

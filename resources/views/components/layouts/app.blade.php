@@ -35,7 +35,8 @@
             <x-slot:actions>
               <div class="tooltip tooltip-left" data-tip="logoff">
                 <x-button icon="o-power"
-                  class="btn-circle btn-ghost btn-xs" />
+                  class="btn-circle btn-ghost btn-xs"
+                  onclick="window.location.href='{{ route('logout') }}'" />
               </div>
             </x-slot:actions>
           </x-list-item>
