@@ -42,6 +42,7 @@ test('validation rules', function ($f) {
         ->assertHasErrors([$f->field => $f->rule]);
 })->with([
     'name::required' => (object) ['field' => 'name', 'value' => '', 'rule' => 'required'],
+    'name::min' => (object) ['field' => 'name', 'value' => '**', 'rule' => 'min'],
     'name::max:255' => (object) ['field' => 'name', 'value' => str_repeat('*', 256), 'rule' => 'max'],
 
     'email::required' => (object) ['field' => 'email', 'value' => '', 'rule' => 'required'],

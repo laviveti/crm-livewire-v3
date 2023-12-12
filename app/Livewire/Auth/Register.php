@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class Register extends Component
 {
-    #[Rule(['required', 'max:255'])]
+    #[Rule(['required', 'min:3', 'max:255'])]
     public ?string $name = null;
 
     #[Rule(['required', 'email', 'max:255', 'confirmed'])]
@@ -23,7 +23,8 @@ class Register extends Component
 
     public function render(): View
     {
-        return view('livewire.auth.register');
+        return view('livewire.auth.register')
+            ->layout('components.layouts.guest');
     }
 
     public function submit(): void

@@ -1,7 +1,3 @@
-import forms from "@tailwindcss/forms";
-import typography from "@tailwindcss/typography";
-import daisyui from "daisyui";
-
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
@@ -10,10 +6,11 @@ export default {
         "./app/View/Components/**/**/*.php",
         "./app/Livewire/**/**/*.php",
 
+        // Add MaryUI
         "./vendor/robsontenorio/mary/src/View/Components/**/*.php",
     ],
     theme: {
         extend: {},
     },
-    plugins: [forms, typography, daisyui],
+    plugins: [require("daisyui")],
 };
