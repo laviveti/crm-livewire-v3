@@ -4,6 +4,8 @@ namespace App\Livewire\Auth;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class Login extends Component
@@ -20,6 +22,8 @@ class Login extends Component
     public function tryToLogin(): void
     {
         if (! Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
+            RateLimiter::hit(Str::lower($this->email));
+
             $this->addError('invalidCredentials', trans('auth.failed'));
 
             return;
