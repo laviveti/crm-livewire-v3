@@ -16,7 +16,7 @@ class Login extends Component
 
     public function render(): View
     {
-        return view('livewire.auth.login');
+        return view('livewire.auth.login')->layout('components.layouts.guest');
     }
 
     public function tryToLogin(): void
@@ -24,7 +24,7 @@ class Login extends Component
         if ($this->ensureIsNotRateLimiting()) {
             return;
         }
-        if (! Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
+        if (!Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
             RateLimiter::hit($this->throttleKey());
             $this->addError('invalidCredentials', trans('auth.failed'));
 
@@ -35,7 +35,7 @@ class Login extends Component
 
     private function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->email).'|'.request()->ip());
+        return Str::transliterate(Str::lower($this->email) . '|' . request()->ip());
     }
 
     private function ensureIsNotRateLimiting(): bool
