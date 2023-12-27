@@ -48,3 +48,4 @@ it('should make sure that the rate limiting is blocking after 5 attempts', funct
         ->call('tryToLogin')
         ->assertHasErrors(['rateLimiter']);
 });
+
