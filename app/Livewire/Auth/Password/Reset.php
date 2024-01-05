@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 
@@ -59,6 +60,12 @@ class Reset extends Component
         $this->redirect(route('dashboard'));
 
         session()->flash($status, __($status));
+    }
+
+    #[Computed]
+    public function obfuscatedEmail()
+    {
+        return obfuscate_email($this->email);
     }
 
     private function tokenNotValid(): bool
