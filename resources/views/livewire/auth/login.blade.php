@@ -6,6 +6,13 @@
     </x-alert>
   @endif
 
+  @if ($passwordResetMessage = session()->get('reset'))
+    <x-alert icon="o-check-circle" class="alert-info mb-14">
+      {{ $passwordResetMessage }}
+    </x-alert>
+  @endif
+
+
   @if ($errors->hasAny(['invalidCredentials', 'rateLimiter']))
     <x-alert icon="o-exclamation-triangle" class="alert-warning mb-4 text-sm font-semibold">
       @error('invalidCredentials')

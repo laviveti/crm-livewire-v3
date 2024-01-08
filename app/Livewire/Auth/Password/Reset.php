@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 
@@ -19,7 +20,7 @@ class Reset extends Component
     public ?string $token = null;
 
     #[Rule(['required', 'email', 'confirmed'])]
-    public ?string $email = null;
+    public ?string $email;
 
     public ?string $email_confirmation = null;
 
@@ -39,6 +40,7 @@ class Reset extends Component
         }
     }
 
+    #[Layout('components.layouts.guest')]
     public function render(): View
     {
         return view('livewire.auth.password.reset');
@@ -57,9 +59,14 @@ class Reset extends Component
                 event(new PasswordReset($user));
             }
         );
-        $this->redirect(route('dashboard'));
 
-        session()->flash($status, __($status));
+        session()->flash('reset', __($status));
+
+        if ($status !== Password::PASSWORD_RESET) {
+            return;
+        }
+
+        $this->redirect(route('login'));
     }
 
     #[Computed]
