@@ -7,12 +7,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class Login extends Component
 {
+    #[Rule('required|min:3|email')]
     public ?string $email;
 
+    #[Rule('required|min:3')]
     public ?string $password;
 
     #[Layout('components.layouts.guest')]
@@ -23,6 +26,8 @@ class Login extends Component
 
     public function tryToLogin(): void
     {
+
+        $this->validate();
         if ($this->ensureIsNotRateLimiting()) {
             return;
         }
