@@ -11,6 +11,10 @@ class Permission extends Model
         'key',
     ];
 
+    // protected $casts = [
+    //     'key' => Can::class
+    // ]; => play 72.26 - 11:25
+
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
