@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
     //region Admin routes
     Route::prefix('/admin')->middleware('can:'.Can::BE_AN_ADMIN->value)->group(function () {
         Route::get('/dashboard', Admin\Dashboard::class)->name('admin.dashboard');
+        Route::get('/users', fn () => 'oi')->name('admin.users');
     });
     //endregion
 });
