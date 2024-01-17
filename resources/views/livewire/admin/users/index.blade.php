@@ -1,5 +1,15 @@
 <div>
   <x-header title="Users" separator />
+  <div class="flex justify-between">
+    <div>
+      asdgya
+    </div>
+
+    <div>
+      create
+    </div>
+  </div>
+
   <x-table :headers="$this->headers" :rows="$this->users">
     @scope('cell_permissions', $user)
       @if ($user->permissions->contains('key', 'be an admin'))
