@@ -16,7 +16,7 @@
     <x-slot:sidebar
       drawer="main-drawer"
       collapsible
-      class="bg-sky-800 pt-3 text-white">
+      class="bg-gray-800/70 pt-3 text-white">
 
       <!-- Hidden when collapsed -->
       <div
